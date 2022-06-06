@@ -16,7 +16,7 @@ export interface ButtonProps {
   leftIcon?: ReactNode
   rightIcon?: ReactNode
   children: ReactNode
-  onClick: () => void
+  onClick?: () => void
 }
 
 export default function Button({

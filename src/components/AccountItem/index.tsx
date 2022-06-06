@@ -6,14 +6,12 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
 
-export interface AccountItemProps {}
-
-export function AccountItem(props: AccountItemProps) {
+export function AccountItem() {
   return (
     <div className={cx('wrapper')}>
       <img
         className={cx('avatar')}
-        src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/9366bed55819a1889d53ff3a508c766b~c5_300x300.webp?x-expires=1654185600&x-signature=xUyT6zBkYWOQeqWKaqKBdGsnv1U%3D"
+        src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_300x300.webp?x-expires=1654693200&x-signature=uZLy5nHl%2F%2Bi2VCMwqjDcATAdfs0%3D"
         alt="Hoaa"
       />
       <div className={cx('info')}>

@@ -5,9 +5,10 @@ import classNames from 'classnames/bind'
 const cx = classNames.bind(styles)
 
 export interface WrapperProps {
+  className?: string
   children: ReactNode
 }
 
-export function Wrapper({ children }: WrapperProps) {
-  return <div className={cx('wrapper')}>{children}</div>
+export function Wrapper({ children, className }: WrapperProps) {
+  return <div className={cx('wrapper', className)}>{children}</div>
 }
