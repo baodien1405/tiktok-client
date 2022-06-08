@@ -2,7 +2,7 @@ import images from '@/assets/images'
 import { AccountItem } from '@/components/AccountItem'
 import Button from '@/components/Button'
 import { Wrapper as PopperWrapper } from '@/components/Popper'
-import { Menu } from '@/components/Popper/Menu'
+import { Menu, MenuItemData } from '@/components/Popper/Menu'
 import {
   faCircleQuestion,
   faCircleXmark,
@@ -23,7 +23,22 @@ const cx = classNames.bind(styles)
 const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
-    title: 'English'
+    title: 'English',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English'
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tiếng Việt'
+        }
+      ]
+    }
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -44,6 +59,16 @@ export default function Header() {
       setSearchResult([])
     }, 0)
   }, [])
+
+  // Handle logic
+  const handleMenuChange = (menuItem: MenuItemData) => {
+    switch (menuItem?.type) {
+      case 'language':
+        // Handle change language
+        break
+      default:
+    }
+  }
 
   return (
     <header className={cx('wrapper')}>
@@ -85,7 +110,7 @@ export default function Header() {
             Log in
           </Button>
 
-          <Menu itemList={MENU_ITEMS}>
+          <Menu itemList={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>

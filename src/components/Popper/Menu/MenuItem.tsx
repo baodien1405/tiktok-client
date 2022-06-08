@@ -8,11 +8,12 @@ const cx = classNames.bind(styles)
 
 export interface MenuItemProps {
   data: MenuItemData
+  onClick: () => void
 }
 
-export function MenuItem({ data }: MenuItemProps) {
+export function MenuItem({ data, onClick }: MenuItemProps) {
   return (
-    <Button className={cx('menu-item')} to={data.to} leftIcon={data.icon}>
+    <Button className={cx('menu-item')} to={data.to} leftIcon={data.icon} onClick={onClick}>
       {data.title}
     </Button>
   )
