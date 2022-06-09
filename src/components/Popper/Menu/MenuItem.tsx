@@ -12,8 +12,12 @@ export interface MenuItemProps {
 }
 
 export function MenuItem({ data, onClick }: MenuItemProps) {
+  const classes = cx('menu-item', {
+    separate: data.separate
+  })
+
   return (
-    <Button className={cx('menu-item')} to={data.to} leftIcon={data.icon} onClick={onClick}>
+    <Button className={classes} to={data.to} leftIcon={data.icon} onClick={onClick}>
       {data.title}
     </Button>
   )

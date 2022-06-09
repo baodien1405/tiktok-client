@@ -17,6 +17,7 @@ export interface MenuItemData {
     data?: Array<any>
   }
   type?: string
+  separate?: boolean
 }
 
 export interface MenuProps {
@@ -53,6 +54,7 @@ export function Menu({ children, itemList = [], onChange }: MenuProps) {
   return (
     <Tippy
       delay={[0, 700]}
+      offset={[12, 8]}
       interactive={true}
       placement="bottom-end"
       render={(attrs) => (
@@ -70,6 +72,7 @@ export function Menu({ children, itemList = [], onChange }: MenuProps) {
           </PopperWrapper>
         </div>
       )}
+      onHide={() => setHistory((prev) => prev.slice(0, 1))}
     >
       {children}
     </Tippy>
