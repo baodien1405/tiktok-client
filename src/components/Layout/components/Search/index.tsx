@@ -8,7 +8,7 @@ import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HeadlessTippy from '@tippyjs/react/headless'
 import classNames from 'classnames/bind'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, ChangeEvent } from 'react'
 import styles from './Search.module.scss'
 
 const cx = classNames.bind(styles)
@@ -51,6 +51,13 @@ export function Search() {
     setShowResult(false)
   }
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value
+    if (!searchValue.startsWith(' ')) {
+      setSearchValue(searchValue)
+    }
+  }
+
   return (
     <HeadlessTippy
       visible={showResult && searchResult.length > 0}
@@ -73,7 +80,7 @@ export function Search() {
           placeholder="Search accounts and videos"
           spellCheck={false}
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleChange}
           onFocus={() => setShowResult(true)}
         />
         {!!searchValue && !loading && (
@@ -84,7 +91,7 @@ export function Search() {
 
         {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-        <button className={cx('search-btn')}>
+        <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
           <SearchIcon />
         </button>
       </div>

@@ -3,6 +3,7 @@ import Button from '@/components/Button'
 import { InboxIcon, MessageIcon, UploadIcon } from '@/components/Icons'
 import Image from '@/components/Image'
 import { Menu, MenuItemData } from '@/components/Popper/Menu'
+import routesConfig from '@/config/routes'
 import {
   faCircleQuestion,
   faCoins,
@@ -17,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tippy from '@tippyjs/react'
 import classNames from 'classnames/bind'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import 'tippy.js/dist/tippy.css'
 import { Search } from '../Search'
 import styles from './Header.module.scss'
@@ -95,7 +97,9 @@ export default function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <img src={images.logo} alt="TikTok" />
+        <Link to={routesConfig.home} className={cx('logo-link')}>
+          <img src={images.logo} alt="TikTok" />
+        </Link>
 
         <Search />
 
@@ -132,11 +136,15 @@ export default function Header() {
             </>
           )}
 
-          <Menu itemList={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+          <Menu
+            itemList={currentUser ? userMenu : MENU_ITEMS}
+            hideOnClick={false}
+            onChange={handleMenuChange}
+          >
             {currentUser ? (
               <Image
                 className={cx('user-avatar')}
-                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/f75993e97bd5424690cb3c702fc88b0d~c5_100x100.jpeg?x-expires=1654959600&x-signature=wj5iUo%2FNNJV2D2N7EjV7fc6%2Fx8M%3D"
+                src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t1.6435-1/152331202_1661459307347981_1863118736017890052_n.jpg?stp=dst-jpg_s148x148&_nc_cat=106&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=VIM5YSXCwqUAX8cel4I&_nc_ht=scontent.fsgn5-13.fna&oh=00_AT8ntggPdZqCL7mNT_n-8TTBjJrgfoLOaap53nobOEb5yA&oe=62CC12DE"
                 alt="Cap Bao Dien"
                 fallback="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/076270f9351cf25b27230101ee302467~c5_720x720.jpeg?x-expires=1655017200&x-signature=4nP%2FABaHgRxPtpLQa2sopuE3Lws%3D"
               />

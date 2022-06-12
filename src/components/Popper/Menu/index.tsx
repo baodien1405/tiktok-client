@@ -23,11 +23,12 @@ export interface MenuItemData {
 export interface MenuProps {
   itemList: Array<MenuItemData>
   children: ReactElement
+  hideOnClick: boolean
   // eslint-disable-next-line no-unused-vars
   onChange: (item: MenuItemData) => void
 }
 
-export function Menu({ children, itemList = [], onChange }: MenuProps) {
+export function Menu({ children, itemList = [], hideOnClick = false, onChange }: MenuProps) {
   const [history, setHistory] = useState([{ data: itemList }])
 
   const current = history[history.length - 1]
@@ -55,6 +56,7 @@ export function Menu({ children, itemList = [], onChange }: MenuProps) {
     <Tippy
       delay={[0, 700]}
       offset={[12, 8]}
+      hideOnClick={hideOnClick}
       interactive={true}
       placement="bottom-end"
       render={(attrs) => (
