@@ -1,6 +1,7 @@
 import { AccountItem } from '@/components/AccountItem'
 import { SearchIcon } from '@/components/Icons'
 import { Wrapper as PopperWrapper } from '@/components/Popper'
+import useDebounce from '@/hooks/useDebounce'
 import { SearchResult } from '@/models'
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,17 +18,19 @@ export function Search() {
   const [showResult, setShowResult] = useState(true)
   const [loading, setLoading] = useState(false)
 
+  const debounced = useDebounce(searchValue, 500)
+
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!debounced.trim()) {
       setSearchResult([])
       return
     }
     setLoading(true)
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        searchValue
+        debounced
       )}&type=less`
     )
       .then((res) => res.json())
@@ -39,7 +42,7 @@ export function Search() {
         console.log('Failed to fetch data: ', error)
         setLoading(false)
       })
-  }, [searchValue])
+  }, [debounced])
 
   const handleClear = () => {
     setSearchValue('')
