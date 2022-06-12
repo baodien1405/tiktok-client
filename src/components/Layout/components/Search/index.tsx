@@ -1,3 +1,4 @@
+import * as searchServices from '@/api/searchServices'
 import { AccountItem } from '@/components/AccountItem'
 import { SearchIcon } from '@/components/Icons'
 import { Wrapper as PopperWrapper } from '@/components/Popper'
@@ -7,7 +8,7 @@ import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HeadlessTippy from '@tippyjs/react/headless'
 import classNames from 'classnames/bind'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './Search.module.scss'
 
 const cx = classNames.bind(styles)
@@ -28,20 +29,16 @@ export function Search() {
       return
     }
     setLoading(true)
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounced
-      )}&type=less`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log('Failed to fetch data: ', error)
-        setLoading(false)
-      })
+
+    const fetchApi = async () => {
+      setLoading(true)
+
+      const result = await searchServices.search(debounced)
+      setSearchResult(result)
+
+      setLoading(false)
+    }
+    fetchApi()
   }, [debounced])
 
   const handleClear = () => {
