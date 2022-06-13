@@ -70,7 +70,7 @@ export function Menu({ children, itemList = [], hideOnClick = false, onChange }:
                 }}
               />
             )}
-            {renderMenuItem()}
+            <div className={cx('menu-body')}>{renderMenuItem()}</div>
           </PopperWrapper>
         </div>
       )}

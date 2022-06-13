@@ -59,42 +59,45 @@ export function Search() {
   }
 
   return (
-    <HeadlessTippy
-      visible={showResult && searchResult.length > 0}
-      interactive={true}
-      render={(attrs) => (
-        <div className={cx('search-result')} tabIndex={-1} {...attrs}>
-          <PopperWrapper>
-            <h4 className={cx('search-title')}>Account</h4>
-            {searchResult.map((result) => (
-              <AccountItem key={result.id} data={result} />
-            ))}
-          </PopperWrapper>
-        </div>
-      )}
-      onClickOutside={handleHideResult}
-    >
-      <div className={cx('search')}>
-        <input
-          ref={inputRef}
-          placeholder="Search accounts and videos"
-          spellCheck={false}
-          value={searchValue}
-          onChange={handleChange}
-          onFocus={() => setShowResult(true)}
-        />
-        {!!searchValue && !loading && (
-          <button className={cx('clear')} onClick={handleClear}>
-            <FontAwesomeIcon icon={faCircleXmark} />
-          </button>
+    // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context.
+    <div>
+      <HeadlessTippy
+        visible={showResult && searchResult.length > 0}
+        interactive={true}
+        render={(attrs) => (
+          <div className={cx('search-result')} tabIndex={-1} {...attrs}>
+            <PopperWrapper>
+              <h4 className={cx('search-title')}>Account</h4>
+              {searchResult.map((result) => (
+                <AccountItem key={result.id} data={result} />
+              ))}
+            </PopperWrapper>
+          </div>
         )}
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx('search')}>
+          <input
+            ref={inputRef}
+            placeholder="Search accounts and videos"
+            spellCheck={false}
+            value={searchValue}
+            onChange={handleChange}
+            onFocus={() => setShowResult(true)}
+          />
+          {!!searchValue && !loading && (
+            <button className={cx('clear')} onClick={handleClear}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
 
-        {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+          {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-        <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-          <SearchIcon />
-        </button>
-      </div>
-    </HeadlessTippy>
+          <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+            <SearchIcon />
+          </button>
+        </div>
+      </HeadlessTippy>
+    </div>
   )
 }
