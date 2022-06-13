@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import Header from '@/components/Layout/components/Header'
+import Header from '@/layouts/components/Header'
 
 export interface HeaderOnlyProps {
   children?: ReactNode

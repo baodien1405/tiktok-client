@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import Header from '@/components/Layout/components/Header'
+import Header from '@/layouts/components/Header'
 import Sidebar from './Sidebar'
 import classNames from 'classnames/bind'
 import styles from './DefaultLayout.module.scss'
@@ -10,7 +10,7 @@ export interface DefaultLayoutProps {
   children: ReactNode
 }
 
-export function DefaultLayout({ children }: DefaultLayoutProps) {
+export default function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
     <div className={cx('wrapper')}>
       <Header />
