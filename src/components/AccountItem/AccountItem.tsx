@@ -13,7 +13,7 @@ export interface AccountItemProps {
 
 const cx = classNames.bind(styles)
 
-export function AccountItem({ data }: AccountItemProps) {
+export default function AccountItem({ data }: AccountItemProps) {
   return (
     <Link to={`@${data.nickname}`} className={cx('wrapper')}>
       <Image className={cx('avatar')} src={data.avatar} alt={data.full_name} />

@@ -1,5 +1,5 @@
 import * as searchServices from '@/services/searchService'
-import { AccountItem } from '@/components/AccountItem'
+import AccountItem from '@/components/AccountItem'
 import { SearchIcon } from '@/components/Icons'
 import { Wrapper as PopperWrapper } from '@/components/Popper'
 import useDebounce from '@/hooks/useDebounce'
@@ -13,7 +13,7 @@ import styles from './Search.module.scss'
 
 const cx = classNames.bind(styles)
 
-export function Search() {
+export default function Search() {
   const [searchValue, setSearchValue] = useState('')
   const [searchResult, setSearchResult] = useState<Array<SearchResult>>([])
   const [showResult, setShowResult] = useState(true)

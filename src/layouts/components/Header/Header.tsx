@@ -2,8 +2,9 @@ import images from '@/assets/images'
 import Button from '@/components/Button'
 import { InboxIcon, MessageIcon, UploadIcon } from '@/components/Icons'
 import Image from '@/components/Image'
-import { Menu, MenuItemData } from '@/components/Popper/Menu'
+import Menu from '@/components/Popper/Menu'
 import config from '@/config'
+import { MenuItemData } from '@/models'
 import {
   faCircleQuestion,
   faCoins,
@@ -20,7 +21,7 @@ import classNames from 'classnames/bind'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import 'tippy.js/dist/tippy.css'
-import { Search } from '../Search'
+import Search from '../Search'
 import styles from './Header.module.scss'
 
 const cx = classNames.bind(styles)

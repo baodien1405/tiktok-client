@@ -1,4 +1,5 @@
 import { Wrapper as PopperWrapper } from '@/components/Popper'
+import { MenuItemData } from '@/models'
 import Tippy from '@tippyjs/react/headless'
 import classNames from 'classnames/bind'
 import React, { ReactElement, useState } from 'react'
@@ -8,16 +9,9 @@ import { MenuItem } from './MenuItem'
 
 const cx = classNames.bind(styles)
 
-export interface MenuItemData {
-  icon: ReactElement
-  title: string
-  to?: string
-  children?: {
-    title?: string
-    data?: Array<any>
-  }
-  type?: string
-  separate?: boolean
+export interface History {
+  title?: string
+  data: Array<MenuItemData>
 }
 
 export interface MenuProps {
@@ -28,8 +22,13 @@ export interface MenuProps {
   onChange: (item: MenuItemData) => void
 }
 
-export function Menu({ children, itemList = [], hideOnClick = false, onChange }: MenuProps) {
-  const [history, setHistory] = useState([{ data: itemList }])
+export default function Menu({
+  children,
+  itemList = [],
+  hideOnClick = false,
+  onChange
+}: MenuProps) {
+  const [history, setHistory] = useState<Array<History>>([{ data: itemList }])
 
   const current = history[history.length - 1]
 
@@ -64,7 +63,7 @@ export function Menu({ children, itemList = [], hideOnClick = false, onChange }:
           <PopperWrapper className={cx('menu-popper')}>
             {history.length > 1 && (
               <Header
-                title="Language"
+                title={current.title || ''}
                 onBack={() => {
                   setHistory((prev) => prev.slice(0, prev.length - 1))
                 }}

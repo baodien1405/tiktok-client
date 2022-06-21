@@ -1,14 +1,14 @@
 import React from 'react'
-import { MenuItemData } from '.'
 import Button from '@/components/Button'
 import classNames from 'classnames/bind'
 import styles from './Menu.module.scss'
+import { MenuItemData } from '@/models'
 
 const cx = classNames.bind(styles)
 
 export interface MenuItemProps {
   data: MenuItemData
-  onClick: () => void
+  onClick?: () => void
 }
 
 export function MenuItem({ data, onClick }: MenuItemProps) {
