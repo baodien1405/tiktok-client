@@ -145,7 +145,7 @@ export default function Header() {
             {currentUser ? (
               <Image
                 className={cx('user-avatar')}
-                src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t1.6435-1/152331202_1661459307347981_1863118736017890052_n.jpg?stp=dst-jpg_s148x148&_nc_cat=106&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=VIM5YSXCwqUAX8cel4I&_nc_ht=scontent.fsgn5-13.fna&oh=00_AT8ntggPdZqCL7mNT_n-8TTBjJrgfoLOaap53nobOEb5yA&oe=62CC12DE"
+                src="https://scontent.fsgn5-13.fna.fbcdn.net/v/t1.6435-1/152331202_1661459307347981_1863118736017890052_n.jpg?stp=cp0_dst-jpg_p80x80&_nc_cat=106&ccb=1-7&_nc_sid=7206a8&_nc_ohc=4X9JdDSrKiQAX8B1jja&_nc_ht=scontent.fsgn5-13.fna&oh=00_AT_Y9mR3OcNaLKL9ie5idCPTjhweFixD7p1qGQ-32VL4jg&oe=631F215E"
                 alt="Cap Bao Dien"
                 fallback="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/076270f9351cf25b27230101ee302467~c5_720x720.jpeg?x-expires=1655017200&x-signature=4nP%2FABaHgRxPtpLQa2sopuE3Lws%3D"
               />
